@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html th:replace="~{layoutFile :: layout(${pageTitle}, ~{::section})}">
 
-    <section>
-        <p> Welcome to About Page</p>
-    </section>
+<section>
+    <p th:text="${serverStarted}"></p>
+    <p th:text="${currentTime}"></p>
+</section>
 </html>
 

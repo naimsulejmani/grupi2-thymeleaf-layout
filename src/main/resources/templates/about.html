@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<html th:replace="~{layoutFile :: layout(~{::title}, ~{::section})}">
-<head>
-  <title>Home Title</title>
-</head>
-<body>
-<section>
-  <p> Welcome to Home Page</p>
-</section>
-</body>
+<html th:replace="~{layoutFile :: layout(${pageTitle}, ~{::section})}">
+
+    <section>
+        <p> Welcome to About Page</p>
+    </section>
 </html>
 
