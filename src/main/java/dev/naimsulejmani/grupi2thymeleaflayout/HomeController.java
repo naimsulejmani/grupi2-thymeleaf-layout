@@ -25,6 +25,7 @@ public class HomeController {
 
     @GetMapping("/contact")
     public String contact(Model model) {
+        System.out.println("Testing2");
         model.addAttribute("pageTitle", "Contact Page");
         return "contact";
     }
