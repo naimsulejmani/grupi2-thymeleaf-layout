@@ -1,0 +1,46 @@
+<div th:replace="~{layoutFile::layout ('Loops', ~{::main})}">
+    <main class="container">
+        <style>
+            img {
+                width: 200px;
+                height: 200px;
+            }
+        </style>
+        <h1>Loops</h1>
+        <p th:each="i : ${#numbers.sequence(start, end,2)}">
+            <span th:text="${i}"></span>
+        </p>
+        <hr>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <td>Image</td>
+                <td>Title</td>
+                <td>Description</td>
+                <td>Date</td>
+                <td>Type</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="_news : ${news}" th:object="${_news}">
+                <td>
+                    <img th:src="*{imageUrl}" alt="Image Not Found!">
+                </td>
+                <td th:text="*{title}"></td>
+                <td th:text="*{shortDescription}"></td>
+                <td th:text="*{date}"></td>
+                <td th:text="*{type}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+
+
+
+
+
+
+
+
+

@@ -7,7 +7,21 @@
     <p id="loadedTime"></p>
     <p id="realTime"></p>
 
-    <script th:src="@{/js/time.js}"></script>
+    <p th:text="${random}"></p>
+    <p th:if="${random>0.5}">Random number is greater than 0.5</p>
+    <p th:if="${random<0.5}">Random number is less than 0.5</p>
+    <p th:if="${random==0.5}">Random number is equal to 0.5</p>
+
+    <p th:text="${random>0.5 ? 'TURR': 'JAZZ'}"
+        th:style="${random>0.5 ?'color:red' : 'color:blue'}"
+    ></p>
+    <hr/>
+    <p th:if="${random>0.5}">TURR</p>
+    <p th:unless="${random>0.5}">JAZZ</p>
+
+
+
+    <script th:src="@{/js/time.js}" th:if="${random>0.5}"></script>
 </section>
 
 </html>

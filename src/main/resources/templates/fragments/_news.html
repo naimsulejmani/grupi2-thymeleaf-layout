@@ -1,0 +1,13 @@
+<div th:fragment="showNews(imageUrl, title, shortDescription, date, type)">
+    <img th:src="${imageUrl}" alt="Image Not Found!"/> <br/>
+    <h2 th:text="${title}"></h2>
+    <p th:text="${shortDescription}"></p>
+
+    <!-- Check if the string date is today -->
+    <p th:if="${T(java.time.LocalDate).parse(date).equals(T(java.time.LocalDate).now())}">TODAY</p>
+
+    <!-- Otherwise, show the actual date -->
+    <p th:unless="${T(java.time.LocalDate).parse(date).equals(T(java.time.LocalDate).now())}" th:text="${date}"></p>
+
+    <h3 th:text="${type}"></h3>
+</div>
