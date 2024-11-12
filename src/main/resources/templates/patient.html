@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html th:replace="~{layoutFile :: layout(${pageTitle}, ~{::section})}">
+
+    <section class="">
+        <p> Welcome to Patient Page</p>
+        <hr>
+        <div th:object="${patient}" class="container">
+            <p th:text="*{name}"></p>
+            <p th:text="*{surname}"></p>
+            <p th:text="*{phone}"></p>
+            <p th:text="*{address}"></p>
+            <p th:text="*{isSick ? 'YES':'NO'}"></p>
+        </div>
+
+
+    </section>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html th:replace="~{layoutFile :: layout(${pageTitle}, ~{::section})}">
+
+    <section>
+        <p> Welcome to Patients Page</p>
+        <hr>
+
+
+        <table border="1" class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>IsSick</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="patient : ${patients}" th:object="${patient}"
+                th:style="${patient.isSick ? 'color:red' : 'background-color:yellow'}">
+                    <td th:text="*{name}"></td>
+                    <td th:text="*{surname}"></td>
+                    <td th:text="*{phone}"></td>
+                    <td th:text="*{address}"></td>
+<!--                    <td th:text="*{isSick ? 'YES':'NO'}"></td>-->
+                    <td>
+                        <input type="checkbox" th:checked="*{isSick}" disabled="disabled" style="width:25px; height: 25px"/>
+                        <img th:src="*{isSick ? '/images/sick.jpg' : '/images/healthy.jpeg'}"  alt="Sick" style="width: 30px; height: 30px"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr/>
+        <div th:switch="${number}">
+            <p th:case="1">Number One</p>
+            <p th:case="2">Number Two</p>
+            <p th:case="3">Number Three</p>
+            <p th:case="*">Other number</p>
+        </div>
+
+        <hr/>
+        <div th:switch="${name}">
+            <p th:case="'doctor'">It's a doctor</p>
+            <p th:case="${array[0]}">It's a student</p>
+            <p th:case="*">It's a person</p>
+        </div>
+    </section>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
