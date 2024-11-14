@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html th:replace="~{layoutFile :: layout('Doctor Details', ~{::section})}">
+
+<section>
+    <main class="container">
+
+
+        <p> Welcome to Doctor Page</p>
+        <hr/>
+
+        <a th:href="@{/doctors}" class="btn btn-link">Back to Doctors</a><br/>
+        <a class="btn btn-link" onclick="window.history.back()">Back to previous page!</a>
+
+        <div th:if="${doctor!=null}" th:object="${doctor}">
+            <p>Doctor ID: <b th:text="*{id}"></b></p>
+            <p>Doctor Name: <b th:text="*{name}"></b></p>
+            <p>Doctor Surname: <b th:text="*{surname}"></b></p>
+            <p>Doctor Phone: <b th:text="*{phone}"></b></p>
+            <p>Doctor Address: <b th:text="*{address}"></b></p>
+            <p>Doctor Speciality: <b th:text="*{speciality}"></b></p>
+        </div>
+
+        <div th:unless="${doctor!=null}">
+            <p>No doctor found!</p>
+        </div>
+
+    </main>
+</section>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,9 +3,7 @@ package dev.naimsulejmani.grupi2thymeleaflayout;
 import dev.naimsulejmani.grupi2thymeleaflayout.models.Doctor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +21,7 @@ public class DoctorController {
         doctors.add(new Doctor(3, "Bob", "Doe", "555-555-5553", "123 Main St", "Neurologist"));
     }
 
+    //    @RequestMapping(value = "", method = RequestMethod.GET)
     @GetMapping("")
     public String findAllDoctors(Model model, @RequestParam(value = "search", required = false) String search) {
 
@@ -38,8 +37,32 @@ public class DoctorController {
         }
 
         System.out.println("search = " + search);
-        return "doctors";
+        return "doctors/list";
     }
+
+    //http://localhost:8080/doctors/1
+    //http://localhost:8080/doctors/1123
+    //http://localhost:8080/doctors/naim
+    @GetMapping("/{id}")
+    public String getDoctor(Model model, @PathVariable("id") int id) {
+        var doctor = doctors.stream()
+                .filter(d -> d.getId() == id)
+                .findFirst()
+                .orElse(null);
+        model.addAttribute("doctor", doctor);
+        return "doctors/details";
+    }
+
+//    public Doctor getDoctorById(int id) {
+//        Doctor doctor = null;
+//        for(Doctor doc: doctors) {
+//            if(doc.getId()==id) {
+//                doctor = doc;
+//                break;
+//            }
+//        }
+//        return doctor;
+//    }
 
 }
 

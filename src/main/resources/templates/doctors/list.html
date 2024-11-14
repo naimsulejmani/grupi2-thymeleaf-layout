@@ -15,7 +15,7 @@
 
         <th:block th:if="${search!=null && !search.isBlank()}">
             <span>Search text: <i th:text="${search}"></i></span> &nbsp; &nbsp;
-            <a th:href="@{/doctors}" class="btn btn-sm btn-primary">Clear Search</a>
+            <a th:href="@{/templates/doctors}" class="btn btn-sm btn-primary">Clear Search</a>
         </th:block>
 
 
@@ -44,7 +44,7 @@
                 <td th:text="*{address}"></td>
                 <td th:text="*{speciality}"></td>
                 <td>
-                    SOME URL HERE TO EDIT, VIEW, DELETE
+                    <a th:href="@{/doctors/{id}(id=*{id})}" class="btn btn-sm btn-primary">Details</a>
                 </td>
             </tr>
             </tbody>
