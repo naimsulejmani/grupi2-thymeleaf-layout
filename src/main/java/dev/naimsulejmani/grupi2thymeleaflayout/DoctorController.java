@@ -43,7 +43,7 @@ public class DoctorController {
     //http://localhost:8080/doctors/1
     //http://localhost:8080/doctors/1123
     //http://localhost:8080/doctors/naim
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/details")
     public String getDoctor(Model model, @PathVariable("id") int id) {
         var doctor = doctors.stream()
                 .filter(d -> d.getId() == id)
@@ -63,6 +63,16 @@ public class DoctorController {
 //        }
 //        return doctor;
 //    }
+
+    @GetMapping("/{id}/edit")
+    public String editDoctor(Model model, @PathVariable("id") int id) {
+        var doctor = doctors.stream()
+                .filter(d -> d.getId() == id)
+                .findFirst()
+                .orElse(null);
+        model.addAttribute("doctor", doctor);
+        return "doctors/edit";
+    }
 
 }
 

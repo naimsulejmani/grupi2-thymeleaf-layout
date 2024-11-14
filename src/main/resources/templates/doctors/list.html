@@ -44,7 +44,8 @@
                 <td th:text="*{address}"></td>
                 <td th:text="*{speciality}"></td>
                 <td>
-                    <a th:href="@{/doctors/{id}(id=*{id})}" class="btn btn-sm btn-primary">Details</a>
+                    <a th:href="@{/doctors/{id}/details(id=*{id})}" class="btn btn-sm btn-primary">Details</a>
+                    <a th:href="@{/doctors/{id}/edit(id=*{id})}" class="btn btn-sm btn-warning">Edit</a>
                 </td>
             </tr>
             </tbody>
