@@ -9,13 +9,15 @@
         <hr/>
         <form action="/doctors" method="get">
             <label for="search">Search: </label>
-            <input type="search" id="search" name="search"/>
+            <input type="search" id="search" name="search" th:value="${search}"/>
             <button type="submit">Search</button>
+
+            <a th:href="@{/doctors/new}" class="btn btn-info" style="float:right; margin-right: 25px;">New Doctor</a>
         </form>
 
         <th:block th:if="${search!=null && !search.isBlank()}">
             <span>Search text: <i th:text="${search}"></i></span> &nbsp; &nbsp;
-            <a th:href="@{/templates/doctors}" class="btn btn-sm btn-primary">Clear Search</a>
+            <a th:href="@{/doctors}" class="btn btn-sm btn-primary">Clear Search</a>
         </th:block>
 
 
@@ -46,6 +48,7 @@
                 <td>
                     <a th:href="@{/doctors/{id}/details(id=*{id})}" class="btn btn-sm btn-primary">Details</a>
                     <a th:href="@{/doctors/{id}/edit(id=*{id})}" class="btn btn-sm btn-warning">Edit</a>
+                    <a th:href="@{/doctors/{id}/delete(id=*{id})}" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
             </tbody>

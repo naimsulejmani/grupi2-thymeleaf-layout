@@ -12,13 +12,14 @@ import java.util.List;
 //http://localhost:8080/doctors
 @RequestMapping("/doctors")
 public class DoctorController {
-
+    private static int generateId = 0;
     private final List<Doctor> doctors = new ArrayList<>();
 
     public DoctorController() {
         doctors.add(new Doctor(1, "John", "Doe", "555-555-5551", "123 Main St", "Cardiologist"));
         doctors.add(new Doctor(2, "Jane", "Doe", "555-555-5552", "123 Main St", "Dermatologist"));
         doctors.add(new Doctor(3, "Bob", "Doe", "555-555-5553", "123 Main St", "Neurologist"));
+        generateId = 3;
     }
 
     //    @RequestMapping(value = "", method = RequestMethod.GET)
@@ -72,6 +73,31 @@ public class DoctorController {
                 .orElse(null);
         model.addAttribute("doctor", doctor);
         return "doctors/edit";
+    }
+
+    //http://localhost:8080/doctors/1/delete
+    @GetMapping("/{id}/delete")
+    public String deleteDoctor(Model model, @PathVariable("id") int id) {
+        // JAVA Stream API
+        var doctor = doctors.stream()
+                .filter(d -> d.getId() == id)
+                .findFirst()
+                .orElse(null);
+        model.addAttribute("doctor", doctor);
+        return "doctors/delete";
+    }
+
+    @GetMapping("/new")
+    public String newDoctor(Model model) {
+        model.addAttribute("doctor", new Doctor());
+        return "doctors/new";
+    }
+
+    @PostMapping("/new")
+    public String newDoctor(@ModelAttribute Doctor doctor) {
+        doctor.setId(++generateId);
+        doctors.add(doctor);
+        return "redirect:/doctors";
     }
 
 }
