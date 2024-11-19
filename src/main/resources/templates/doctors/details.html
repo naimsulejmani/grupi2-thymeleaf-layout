@@ -8,23 +8,27 @@
         <p> Welcome to Doctor Page</p>
         <hr/>
 
-        <a th:href="@{/doctors}" class="btn btn-link">Back to Doctors</a><br/>
-        <a class="btn btn-link" onclick="window.history.back()">Back to previous page!</a>
+        <div id="doctor-details">
+            <a th:href="@{/doctors}" class="btn btn-link">Back to Doctors</a><br/>
+            <a class="btn btn-link" onclick="window.history.back()">Back to previous page!</a>
 
+            <div th:if="${doctor!=null}" th:object="${doctor}">
+                <p>Doctor ID: <b th:text="*{id}"></b></p>
+                <p>Doctor Name: <b th:text="*{name}"></b></p>
+                <p>Doctor Surname: <b th:text="*{surname}"></b></p>
+                <p>Doctor Phone: <b th:text="*{phone}"></b></p>
+                <p>Doctor Address: <b th:text="*{address}"></b></p>
+                <p>Doctor Speciality: <b th:text="*{speciality}"></b></p>
+
+            </div>
+
+            <div th:unless="${doctor!=null}">
+                <p>No doctor found!</p>
+            </div>
+        </div>
         <div th:if="${doctor!=null}" th:object="${doctor}">
-            <p>Doctor ID: <b th:text="*{id}"></b></p>
-            <p>Doctor Name: <b th:text="*{name}"></b></p>
-            <p>Doctor Surname: <b th:text="*{surname}"></b></p>
-            <p>Doctor Phone: <b th:text="*{phone}"></b></p>
-            <p>Doctor Address: <b th:text="*{address}"></b></p>
-            <p>Doctor Speciality: <b th:text="*{speciality}"></b></p>
-
             <a th:href="@{/doctors/{id}/edit(id=*{id})}" class="btn btn-sm btn-warning">Edit</a>
             <a th:href="@{/doctors/{id}/delete(id=*{id})}" class="btn btn-sm btn-danger">Delete</a>
-        </div>
-
-        <div th:unless="${doctor!=null}">
-            <p>No doctor found!</p>
         </div>
 
     </main>

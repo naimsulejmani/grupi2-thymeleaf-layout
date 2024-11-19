@@ -11,7 +11,8 @@
         <a th:href="@{/doctors}" class="btn btn-link">Back to Doctors</a><br/>
         <a class="btn btn-link" onclick="window.history.back()">Back to previous page!</a>
 
-        <form th:if="${doctor!=null}" th:object="${doctor}">
+        <form th:if="${doctor!=null}" th:object="${doctor}"
+              th:action="@{/doctors/{id}/edit(id=*{id})}" method="post">
             <!--            <input type="hidden" th:value="*{id}" id="id" name="id"/>-->
             <input type="hidden" th:field="*{id}"/>
             <div>

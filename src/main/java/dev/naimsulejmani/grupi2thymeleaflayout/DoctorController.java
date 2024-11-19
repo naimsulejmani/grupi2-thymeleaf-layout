@@ -100,6 +100,29 @@ public class DoctorController {
         return "redirect:/doctors";
     }
 
+    @PostMapping("/{id}/delete")
+    public String deleteDoctor(@PathVariable("id") int id) {
+        // LAMBDA EXPRESSION , ANONYMOUS INNER CLASS , FUNCTIONAL INTERFACE, JAVA STREAM API
+        doctors.removeIf(d -> d.getId() == id);
+        return "redirect:/doctors";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String editDoctor(@PathVariable("id") int id, @ModelAttribute Doctor doctor) {
+        var doctorToEdit = doctors.stream()
+                .filter(d -> d.getId() == id)
+                .findFirst()
+                .orElse(null);
+        if (doctorToEdit != null) {
+            doctorToEdit.setName(doctor.getName());
+            doctorToEdit.setSurname(doctor.getSurname());
+            doctorToEdit.setPhone(doctor.getPhone());
+            doctorToEdit.setAddress(doctor.getAddress());
+            doctorToEdit.setSpeciality(doctor.getSpeciality());
+        }
+        return "redirect:/doctors";
+    }
+
 }
 
 
